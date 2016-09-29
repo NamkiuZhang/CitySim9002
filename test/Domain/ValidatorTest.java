@@ -32,4 +32,14 @@ public class ValidatorTest {
     public void ifArgumentIsNotAnIntegerReturnFalse() {
         Assert.assertFalse(new Validator().validateArgumentType(new String[] { "test" }));
     }
+    
+    @Test
+    public void ifArgumentLengthAndArgumentTypeIsCorrect(){
+        Validator mockValidator=mock(Validator.class);
+        when(mockValidator.validateNumberOfArguments(any(String().class))).thenRetrun(true);
+        when(mockValidator.validateArgumentType(any(String().class))).return(true);
+        when(mockValidator.validateArguments(any(String().class))).thenCallRealMethod();
+        
+        Assert.asseertTrue(mockValidator.validateArguments(new String(0)));
 }
+
