@@ -7,6 +7,9 @@ package Domain;
 
 import org.junit.Assert;
 import org.junit.Test;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -36,10 +39,13 @@ public class ValidatorTest {
     @Test
     public void ifArgumentLengthAndArgumentTypeIsCorrect(){
         Validator mockValidator=mock(Validator.class);
-        when(mockValidator.validateNumberOfArguments(any(String().class))).thenRetrun(true);
-        when(mockValidator.validateArgumentType(any(String().class))).return(true);
-        when(mockValidator.validateArguments(any(String().class))).thenCallRealMethod();
+        when(mockValidator.validateNumberOfArguments(any(String[].class))).thenReturn(true);
+        when(mockValidator.validateArgumentType(any(String[].class))).thenReturn(true);
+        when(mockValidator.validateArguments(any(String[].class))).thenCallRealMethod();
         
-        Assert.asseertTrue(mockValidator.validateArguments(new String(0)));
+        Assert.assertTrue(mockValidator.validateArguments(new String[0]));
+    }
 }
+
+   
 
