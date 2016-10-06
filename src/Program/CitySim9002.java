@@ -5,7 +5,7 @@
  */
 package Program;
 
-//import Domain.Validator;
+import Domain.Validator;
 
 /**
  *
@@ -16,7 +16,7 @@ public class CitySim9002 {
     
     public static void main(String[] args) {   
         if (new Validator().validateArguments(args)) {
-            int arg=Integer.parseInt(args[0]);     
+            int arg=Integer.parseInt(args[0]);
             Visitor vi= new Visitor(arg);
             Location loc = new Location(arg);           
             System.out.println("Welcome to CitySim! Your seed is "+arg+".");

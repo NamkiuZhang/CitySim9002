@@ -12,16 +12,53 @@ import Domain.Validator;
  * @author AsphaltPanthers
  */
 <span class="nc" id="L14">public class CitySim9002 {</span>
-<span class="nc" id="L15">    public static String errorMessage = &quot;Please enter one integer argument, seed&quot;;</span>
+<span class="fc" id="L15">    public static String errorMessage = &quot;Please enter one integer argument, seed&quot;;</span>
     
-    public static int main(String[] args) {
+    public static void main(String[] args) {   
 <span class="nc bnc" id="L18" title="All 2 branches missed.">        if (new Validator().validateArguments(args)) {</span>
-<span class="nc" id="L19">            return 0;</span>
-        }
+<span class="nc" id="L19">            int arg=Integer.parseInt(args[0]);     </span>
+<span class="nc" id="L20">            Visitor vi= new Visitor(arg);</span>
+<span class="nc" id="L21">            Location loc = new Location(arg);           </span>
+<span class="nc" id="L22">            System.out.println(&quot;Welcome to CitySim! Your seed is &quot;+arg+&quot;.&quot;);</span>
+            
+<span class="nc bnc" id="L24" title="All 2 branches missed.">            for(int i =1;i&lt;6;i++){</span>
+<span class="nc" id="L25">                int numVi=vi.ranVisNum();</span>
+                //generate one type visitor from the four type
+<span class="nc" id="L27">                IPerson person=vi.geneVisitor(numVi);</span>
+<span class="nc" id="L28">                System.out.println(getVisitorInfo(person,i));</span>
+                
+                //make sure that visitor visit one locaton
+<span class="nc" id="L31">                int nlwl=loc.intLocWithoutLeave();</span>
+                //get the location name
+<span class="nc" id="L33">                String location = loc.strLoc(nlwl);</span>
+<span class="nc" id="L34">                System.out.println(getVisitorPreference(person,i,nlwl,location));</span>
+                
+                //after visit one location, generate next locations or leave randomly
+<span class="nc" id="L37">                int nl=loc.intLoc();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                while(nl!=5){</span>
+<span class="nc" id="L39">                    location = loc.strLoc(nl);</span>
+<span class="nc" id="L40">                    System.out.println(getVisitorPreference(person,i,nl,location));</span>
+<span class="nc" id="L41">                    nl=loc.intLoc();</span>
+                }
+<span class="nc" id="L43">                System.out.println(&quot;Visitor &quot;+i+&quot; has left the city.&quot;);</span>
+<span class="nc" id="L44">                System.out.println(&quot;***&quot;);                      </span>
+            }             
+<span class="nc" id="L46">        }</span>
         else {
-<span class="nc" id="L22">            System.out.println(errorMessage);</span>
-<span class="nc" id="L23">            return -1;</span>
+<span class="nc" id="L48">            System.out.println(errorMessage);</span>
+<span class="nc" id="L49">            System.exit(0);</span>
         }
+<span class="nc" id="L51">    }</span>
+    
+    public static String getVisitorInfo(IPerson person,int i){
+<span class="fc" id="L54">        return &quot;Visitor &quot;+ i +&quot; is a &quot;+person.type()+&quot;.&quot;;</span>
     }
+    
+    //getVisitorPreference(IPerson person,int i,int intlocationnumber,String locationname)
+    public static String getVisitorPreference(IPerson person, int i, int iloc, String sloc){
+<span class="fc" id="L59">        return &quot;Visitor &quot;+ i+&quot; is going to &quot;+sloc+&quot;!\nVisitor &quot;+i+person.preference(iloc)+sloc+&quot;.&quot;;</span>
+    }
+    
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

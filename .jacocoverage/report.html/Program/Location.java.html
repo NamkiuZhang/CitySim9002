@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Location.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitySim9002&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Program</a> &gt; <span class="el_source">Location.java</span></div><h1>Location.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Program;
+
+import java.util.Random;
+
+/**
+ *
+ * @author Mengjiao
+ */
+public class Location {
+    
+    Random ra;
+    
+<span class="fc" id="L18">    public Location(int arg){</span>
+<span class="fc" id="L19">        ra = new Random(arg);</span>
+<span class="fc" id="L20">    }</span>
+    
+    //1-&gt;The Cathedral of Learning
+    //2-&gt;Squirrel Hill
+    //3-&gt;The point
+    //4-&gt;Downtown
+    //5 means left   
+    //randomly generate 5 numbers
+    public int intLoc(){    
+<span class="fc" id="L29">        return ra.nextInt(5)+1;</span>
+    }
+    
+    //1-&gt;The Cathedral of Learning
+    //2-&gt;Squirrel Hill
+    //3-&gt;The point
+    //4-&gt;Downtown
+    //randamly generate 4 numbers
+    public int intLocWithoutLeave(){       
+<span class="fc" id="L38">        return ra.nextInt(4)+1;</span>
+    }
+    
+    //generate location name based on relationship between number and the location it represents
+    public String strLoc(int n){
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if(n==1)</span>
+<span class="fc" id="L44">            return &quot;The Cathedral of Learning&quot;;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        else if(n==2)</span>
+<span class="nc" id="L46">            return &quot;Squirrel Hill&quot;;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        else if(n==3)</span>
+<span class="nc" id="L48">            return &quot;The point&quot;;</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        else if(n==4)</span>
+<span class="nc" id="L50">            return &quot;Downtown&quot;;</span>
+        
+<span class="fc" id="L52">        return &quot;Invalid location number&quot;;</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
