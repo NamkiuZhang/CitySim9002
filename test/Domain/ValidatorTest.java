@@ -36,15 +36,39 @@ public class ValidatorTest {
         Assert.assertFalse(new Validator().validateArgumentType(new String[] { "test" }));
     }
     
+    //test Validator validateArguments(String[] args) method 
     @Test
-    public void ifArgumentLengthAndArgumentTypeIsCorrect(){
+    public void ifArgumentLengthAndArgumentTypeAreCorrect(){
         Validator mockValidator=mock(Validator.class);
         when(mockValidator.validateNumberOfArguments(any(String[].class))).thenReturn(true);
         when(mockValidator.validateArgumentType(any(String[].class))).thenReturn(true);
-        when(mockValidator.validateArguments(any(String[].class))).thenCallRealMethod();
-        
+        when(mockValidator.validateArguments(any(String[].class))).thenCallRealMethod();       
         Assert.assertTrue(mockValidator.validateArguments(new String[0]));
     }
+    
+    //test Validator validateArguments(String[] args) method 
+    //when one of length and type is wrong
+    @Test
+    public void ifArgumentLengthCorrectArgumentTypeWrong(){
+        Validator mockValidator=mock(Validator.class);
+        when(mockValidator.validateNumberOfArguments(any(String[].class))).thenReturn(true);
+        when(mockValidator.validateArgumentType(any(String[].class))).thenReturn(false);
+        when(mockValidator.validateArguments(any(String[].class))).thenCallRealMethod();       
+        Assert.assertFalse(mockValidator.validateArguments(new String[0]));
+    }
+    
+    //test Validator validateArguments(String[] args) method 
+    //when both length and type are wrong
+    @Test
+    public void ifArgumentLengthandArgumentTypeAreWrong(){
+        Validator mockValidator=mock(Validator.class);
+        when(mockValidator.validateNumberOfArguments(any(String[].class))).thenReturn(false);
+        when(mockValidator.validateArgumentType(any(String[].class))).thenReturn(false);
+        when(mockValidator.validateArguments(any(String[].class))).thenCallRealMethod();       
+        Assert.assertFalse(mockValidator.validateArguments(new String[0]));
+    }
+    
+    
 }
 
    
